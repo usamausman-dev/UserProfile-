@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <title>User Profile</title>
+
+  <style type="text/css">
+    .card {
+      border-top-width: 0;
+      border-bottom-width: 2px;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border-radius: 3px;
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      box-shadow: none;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+
+    .card.hovercard {
+      position: relative;
+      padding-top: 0;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .card.hovercard .cardheader {
+      background: url("https://webassets.inman.com/wp-content/uploads/2015/03/Evgeny-Karandaev_155420756-1400x621.jpg");
+      background-size: cover;
+      height: 207px;
+    }
+
+    .card.hovercard .avatar {
+      position: relative;
+    }
+
+
+
+    .card.hovercard .avatar img {
+      width: 150px;
+      height: 150px;
+      max-width: 150px;
+      max-height: 150px;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      border-radius: 50%;
+      border: 5px solid rgba(255, 255, 255, 0.5);
+      margin-top:-100px;
+      margin-left:15px;
+    }
+
+    .card.hovercard .info {
+      padding: 4px 8px 10px;
+      margin-bottom: 10px;
+    }
+
+    .card.hovercard .info .title {
+      margin-bottom: 4px;
+      font-size: 32px;
+      line-height: 1;
+      color: #262626;
+    }
+
+    .card.hovercard .bottom {
+      padding: 0 20px;
+      margin-bottom: 17px;
+    }
+
+    .profile.active {
+      background-color: #fff;
+      border: none;
+      font-weight: bold;
+    }
+
+    .profile {
+      color: #495057;
+      font-weight: bold;
+    }
+
+    @media(min-width: 992px) {
+      .edit {
+        margin-left: 23rem !important;
+      }
+
+    }
+    .edit {
+          margin-right: -500px !important;
+          margin-top: -84px !important;
+          }
+    .carousel-inner img {
+      width: 100%;
+      max-height: 191px;
+    }
+
+    .hr {
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .carousel-content {
+      color: black;
+    }
+
+    .carousel-indicators {
+      bottom: -20px;
+    }
+
+    .carousel-content-height {
+      margin-bottom: 98px !important;
+    }
+/*
+    .editbtn:hover{
+      background-color: #007bff!important;
+      color: white
+    }
+
+    .editbtn i:hover{
+      color: white!important;
+      background-color: #007bff!important;
+    }*/
+
+
+    .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: black!important;
+    background-color: #fff;
+    border-bottom: 2px solid black;
+}
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active:hover {
+    color: black!important;
+    background-color: #fff;
+    border-bottom: 2px solid black;
+}
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link:hover{
+  border:0;
+
+}
+
+
+.imgdiv {
+  position: relative;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color:rgba(0,0,0,0.5);
+}
+
+.imgdiv:hover .overlay {
+  opacity: 1;
+}
+
+.text {
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+
+
+  </style>
+</head>
+
+<body>
+
+  <div class="container pt-5">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="card hovercard">
+          <div class="cardheader">
+          </div>
+          <div class="row">
+            <div class="">
+              <div class="col-md-8 avatar">
+                <img alt="" src="https://organicthemes.com/demo/profile/files/2018/05/profile-pic.jpg">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <button type="button" class="btn edit profile bg-light " style="border:1px solid black; margin-top: 0px;
+            margin-left: 0px !important;" data-toggle="modal" data-target="#exampleModal">
+                <th scope="row"><i class="fa fa-camera mr-2"></i></th>
+                Edit Cover Photo
+              </button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 text-left ml-4">
+              <div class="title">
+                <a target="_blank" href="https://scripteden.com/" class="h4">Halima Sultan</a>
+                <button class="btn  ml-1 editbtn"><i class="fa fa-pencil text-primary rounded-circle"></i></button>
+                <!-- <button class="btn" style="margin-left: 50%"><i class="fa fa-link mr-2"></i>Connect</button> -->
+              </div>
+            </div>
+            <div class="info">
+              <div class="col-md-12 text-left" style="margin-left:0.9rem;">
+                <div class="desc"><span style="font-size:18px;">Journalist</span></div>
+                <div class="desc" style="width:400px;"><span style="font-size:17px;">Pakistan</span>&nbsp; &middot;
+                  &nbsp;<b class="text-primary">4,238 Connections</b>&nbsp; &middot; &nbsp;<b class="text-primary">5,788
+                    Publications</b></div>
+                <div class="desc pt-3"><span style="font-size:15px;">
+                    <p>In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate
+                      the visual form</p>
+                  </span></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card hovercard h-100">
+          <div class="row">
+            <div class="col-md-12">
+              <div id="demo" class="carousel slide bg-light" data-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img src="https://i.dawn.com/primary/2020/05/5eb8ed79b3783.jpg" class="img-fluid" alt="Los Angeles">
+                    <div class="carousel-content bg-light carousel-content-height">
+                      <div class="text-left pl-3 pt-2" style="font-size:16px; display: inline-block;
+                        width: 350px;
+                        white-space: nowrap;
+                        overflow: hidden !important;
+                        text-overflow: ellipsis;">
+                        <b>China's Automobile Experiencing Growth</b></div>
+                      <div class="text-left pl-3 pt-2 text-primary" style="font-size:16px;">Robert Frost, National
+                        Geographic</div>
+                      <div class="text-left pl-3 pt-2 text-primary" style="font-size:16px;">SCIENCE - ASIA - AS OF 11
+                        MARCH</div>
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+                    <img
+                      src="https://image.cnbcfm.com/api/v1/image/106320130-1578071873589gettyimages-1187495570.jpeg?v=1578071938"
+                      class="img-fluid" alt="Los Angeles">
+                    <div class="carousel-content bg-light carousel-content-height">
+                      <div class="text-left pl-3 pt-2" style="font-size:16px; display: inline-block;width: 350px;white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;"><b>As of 14 January 2020, 18.626 million hectares (46.03 million acres) was burnt or is
+                          burning across all Australian states</b></div>
+                      <div class="text-left pl-3 pt-2 text-primary" style="font-size:16px;">Robert Frost, National
+                        Geographic</div>
+                      <div class="text-left pl-3 pt-2 text-primary" style="font-size:16px;">SCIENCE - ASIA - AS OF 11
+                        MARCH</div>
+                    </div>
+                  </div>
+                  <ul class="carousel-indicators">
+                    <li data-target="#demo" data-slide-to="0" class="active bg-primary"></li>
+                    <li data-target="#demo" data-slide-to="1" class="bg-primary"></li>
+                    <li data-target="#demo" data-slide-to="2" class="bg-primary"></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12 mt-0 hr">
+              <div style="padding:10px;">
+                <span class="text-center" style="font-size:18px;"><b class="text-primary">Become a Patron</b></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <ul class="nav nav-tabs mt-4 mb-4 " id="myTab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link text-secondary profile active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+          aria-selected="true">Personal Profile</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link profile text-secondary" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+          aria-controls="profile" aria-selected="false">Professional Experience</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link profile text-secondary" id="contact-tab" data-toggle="tab" href="#contact" role="tab"
+          aria-controls="contact" aria-selected="false">Audience</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link profile text-secondary" id="portfolio-tab" data-toggle="tab" href="#portfolio" role="tab"
+          aria-controls="portfolio" aria-selected="false">Portfolio</a>
+      </li>
+      <li class="nav-item">
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Profile</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                ...
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+        <div class="row justify-content-center ">
+
+          <div class="container">
+            <div class="col-md-12 bg-light text-center pt-2 pb-2 rounded border border-dark">
+            <b> <i class="fa fa-image mr-2"></i>Add your Story</b>
+          </div>
+
+          </div>
+          <div class="col-md-3 mt-5 mr-4 ml-5 border p-0">
+            
+            <div class="imgdiv">
+              <img src="https://images.pexels.com/photos/368893/pexels-photo-368893.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="img-fluid image">
+              <div class="overlay">
+                <div class="text"><i class="fa fa-eye mr-2"></i>View</div>
+              </div>
+            </div>
+          </div> 
+
+          <div class="col-md-3 mt-5 mr-4 ml-5 border p-0">
+            
+            <div class="imgdiv">
+              <img src="https://images.pexels.com/photos/459449/pexels-photo-459449.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="img-fluid image">
+              <div class="overlay">
+                <div class="text"><i class="fa fa-eye mr-2"></i>View</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3 mt-5 mr-4 ml-5 border p-0">
+            
+            <div class="imgdiv">
+              <img src="https://static.photocdn.pt/images/articles/2017/07/02/articles/2017_8/iStock-688341240-min.jpg" class="img-fluid image">
+              <div class="overlay">
+                <div class="text"><i class="fa fa-eye mr-2"></i>View</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3 mt-5 mr-4 ml-5 border p-0">
+            
+            <div class="imgdiv">
+              <img src="https://cdn.fstoppers.com/styles/large-16-9/s3/wp-content/uploads/2013/02/Drop-Macro-2.jpg" class="img-fluid image">
+              <div class="overlay">
+                <div class="text"><i class="fa fa-eye mr-2"></i>View</div>
+              </div>
+            </div>
+          </div> 
+
+          <div class="col-md-3 mt-5 mr-4 ml-5 border p-0">
+            
+            <div class="imgdiv">
+              <img src="https://d2jv9003bew7ag.cloudfront.net/uploads/Nine-Berries.-Image-via-photographylife.com_.jpg" class="img-fluid image">
+              <div class="overlay">
+                <div class="text"><i class="fa fa-eye mr-2"></i>View</div>
+              </div>
+            </div>
+          </div> 
+
+          <div class="col-md-3 mt-5 mr-4 ml-5 border p-0">
+            
+            <div class="imgdiv">
+              <img src="https://cdn.retouchme.com/blogs/46.jpg" class="img-fluid image">
+              <div class="overlay">
+                <div class="text"><i class="fa fa-eye mr-2"></i>View</div>
+              </div>
+            </div>
+          </div> 
+
+          <div class="col-md-3 mt-5 mr-4 ml-5 border p-0">
+            
+            <div class="imgdiv">
+              <img src="https://whatphotographygear.com/wp-content/uploads/2017/12/nikon-macro-lens-300x188.jpg" class="img-fluid image">
+              <div class="overlay">
+                <div class="text"><i class="fa fa-eye mr-2"></i>View</div>
+              </div>
+            </div>
+          </div> 
+
+          <div class="col-md-3 mt-5 mr-4 ml-5 border p-0">
+            
+            <div class="imgdiv">
+              <img src="https://www.photography-raw.com/wp-content/uploads/2019/03/18-rust.jpg" class="img-fluid image">
+              <div class="overlay">
+                <div class="text"><i class="fa fa-eye mr-2"></i>View</div>
+              </div>
+            </div>
+          </div> 
+
+          <div class="col-md-3 mt-5 mr-4 ml-5 border p-0">
+            
+            <div class="imgdiv">
+              <img src="https://static.independent.co.uk/s3fs-public/thumbnails/image/2019/06/13/10/water-droplets-macro-7.jpg?width=1000&height=614&fit=bounds&format=pjpg&auto=webp&quality=70&crop=16:9,offset-y0.5" class="img-fluid image">
+              <div class="overlay">
+                <div class="text"><i class="fa fa-eye mr-2"></i>View</div>
+              </div>
+            </div>
+          </div>   
+        </div>
+      </div>
+      <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
+      <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+      <div class="tab-pane fade" id="portfolio" role="tabpanel" aria-labelledby="portfolio-tab">...</div>
+    </div>
+
+  </div>
+
+
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+  </script>
+</body>
+
+</html>
